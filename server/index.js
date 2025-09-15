@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 // Database connection
@@ -70,12 +71,13 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Initialize sample data asynchronously (non-blocking)
-setTimeout(() => {
+// Initialize sample data after database connection is ready
+mongoose.connection.once('open', () => {
+  console.log('Database connected, initializing sample data...');
   initializeData().catch(err => {
     console.error('Failed to initialize data:', err.message);
   });
-}, 2000); // Wait 2 seconds after server starts
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
