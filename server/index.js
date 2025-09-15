@@ -37,7 +37,7 @@ console.log('NODE_ENV:', process.env.NODE_ENV);
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-app.vercel.app'] // Update with your Vercel domain
+    ? ['https://lms-certificate-portal.vercel.app'] // Updated with your actual Vercel domain
     : ['http://localhost:3000'],
   credentials: true
 }));
