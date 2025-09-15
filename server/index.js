@@ -70,8 +70,12 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Initialize sample data
-initializeData();
+// Initialize sample data asynchronously (non-blocking)
+setTimeout(() => {
+  initializeData().catch(err => {
+    console.error('Failed to initialize data:', err.message);
+  });
+}, 2000); // Wait 2 seconds after server starts
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
