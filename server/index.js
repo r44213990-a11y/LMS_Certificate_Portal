@@ -17,6 +17,22 @@ const initializeData = require('./config/initializeData');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Validate required environment variables
+if (!process.env.MONGODB_URI) {
+  console.error('❌ MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
+
+if (!process.env.JWT_SECRET) {
+  console.error('❌ JWT_SECRET environment variable is not set');
+  process.exit(1);
+}
+
+console.log('✅ Environment variables validated');
+console.log('MONGODB_URI:', process.env.MONGODB_URI ? 'Set' : 'Not set');
+console.log('JWT_SECRET:', process.env.JWT_SECRET ? 'Set' : 'Not set');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
@@ -26,6 +42,15 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+// Add error logging middleware
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err);
+  res.status(500).json({ 
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+  });
+});
 
 // Connect to MongoDB
 connectDB();
