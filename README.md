@@ -2,6 +2,12 @@
 
 A React and Node.js application for micro-certifications where students can take quizzes, view results, and download certificates.
 
+## 🌐 Live Demo
+
+**🔗 Live Application**: [https://lms-certificate-portal.vercel.app](https://lms-certificate-portal.vercel.app)
+
+**📁 GitHub Repository**: [https://github.com/r44213990-a11y/LMS_Certificate_Portal](https://github.com/r44213990-a11y/LMS_Certificate_Portal)
+
 ## Features
 
 - User authentication (register/login)
@@ -31,13 +37,22 @@ A React and Node.js application for micro-certifications where students can take
 - **Authentication**: JWT tokens
 - **PDF Generation**: Puppeteer
 
+## 🚀 Quick Start
+
+**Want to try it right away?**
+1. **Visit the live app**: [https://lms-certificate-portal.vercel.app](https://lms-certificate-portal.vercel.app)
+2. **Register a new account** or use test credentials
+3. **Take the quiz** and download your certificate!
+
+**Want to run locally?** See the detailed setup instructions below.
+
 ## Setup
 
-1. **Install dependencies**
+1. **Clone and install dependencies**
    ```bash
-   npm install
-   cd server && npm install
-   cd ../client && npm install
+   git clone https://github.com/r44213990-a11y/LMS_Certificate_Portal.git
+   cd LMS_Certificate_Portal
+   npm run install-all
    ```
 
 2. **Environment setup**
